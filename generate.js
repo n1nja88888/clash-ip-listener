@@ -70,8 +70,6 @@ async function main() {
         })
     })
 
-    // config.listeners.push(...listeners)
-    // config['proxy-groups'].push(...proxyGroups)
     const config = {
         listeners,
         'proxy-groups': proxyGroups
@@ -140,7 +138,6 @@ async function testProxy(groupName, nodeName) {
 
 // 通过本地 Clash HTTP 代理请求外网获取出口 IP
 async function getIpViaClashLocal(groupName, nodeName) {
-    const agent = new HttpsProxyAgent(LOCAL_PROXY_URL)
     const res = await ipAxios.get('https://api.ipify.org', {
         onRetry: async () => await testProxy(groupName, nodeName)
     })
